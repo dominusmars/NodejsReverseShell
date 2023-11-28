@@ -39,7 +39,12 @@ app.get('/forms', (req, res) => {
   });
 
 app.get("/exec/:id",async (req,res)=>{
+  try {
    res.send(await exec(forms[req.params.id].message))
+    
+  } catch (error) {
+    res.send("Error")
+  }
 })
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
